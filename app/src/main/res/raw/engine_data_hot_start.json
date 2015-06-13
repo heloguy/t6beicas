@@ -47,7 +47,7 @@
     "events": [
       {
         "targetValue": 157,
-        "secondsToTarget": 1
+        "secondsToTarget": 0.0001
       },
       {
         "targetValue": 158,
@@ -66,8 +66,12 @@
         "secondsToTarget": 4
       },
       {
-        "targetValue": 657,
-        "secondsToTarget": 6
+        "targetValue": 220,
+        "secondsToTarget": 90
+      },
+      {
+        "targetValue": 200,
+        "secondsToTarget": 300
       }
     ]
   },
@@ -123,6 +127,35 @@
       {
         "targetValue": 0,
         "secondsToTarget": 15
+      }
+    ]
+  },
+
+  "propRpm": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 2,
+        "secondsToTarget": 0.1
+      },
+      {
+        "targetValue": 3,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 4,
+        "secondsToTarget": 0.1
+      },
+      {
+        "targetValue": 5,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 6,
+        "secondsToTarget": 0.1
       }
     ]
   }

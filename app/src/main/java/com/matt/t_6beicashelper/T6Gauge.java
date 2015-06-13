@@ -109,7 +109,7 @@ public class T6Gauge extends GaugeView {
             return;
         }
 
-        Log.i(getTextUnitLabel(), String.format("Target Value: %d, Time to target: %f", e.targetValue, e.timeToTarget));
+//        Log.i(getTextUnitLabel(), String.format("Target Value: %d, Time to target: %f", e.targetValue, e.timeToTarget));
         executeNextAction(e);
     }
 

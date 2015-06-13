@@ -117,5 +117,34 @@
         "secondsToTarget": 13
       }
     ]
+  },
+
+  "propRpm": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 2,
+        "secondsToTarget": 0.1
+      },
+      {
+        "targetValue": 3,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 4,
+        "secondsToTarget": 0.1
+      },
+      {
+        "targetValue": 5,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 6,
+        "secondsToTarget": 0.1
+      }
+    ]
   }
 }

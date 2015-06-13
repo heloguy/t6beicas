@@ -62,5 +62,9 @@
         "secondsToTarget": 30
       }
     ]
+  },
+
+  "propRpm": {
+    "events": []
   }
 }
