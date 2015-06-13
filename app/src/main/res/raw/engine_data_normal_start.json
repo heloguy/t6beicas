@@ -1,0 +1,154 @@
+{
+  "torque": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 7
+      },
+      {
+        "targetValue": 2,
+        "secondsToTarget": 21
+      },
+      {
+        "targetValue": 6,
+        "secondsToTarget": 4
+      }
+    ]
+  },
+
+  "oilPress": {
+    "events": [
+      {
+        "targetValue": 5,
+        "secondsToTarget": 6
+      },
+      {
+        "targetValue": 20,
+        "secondsToTarget": 6
+      },
+
+      {
+        "targetValue": 92,
+        "secondsToTarget": 10
+      },
+
+      {
+        "targetValue": 100,
+        "secondsToTarget": 7
+      }
+    ]
+  },
+
+  "itt": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 7
+      },
+      {
+        "targetValue": 622,
+        "secondsToTarget": 8
+      },
+      {
+        "targetValue": 615,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 616,
+        "secondsToTarget": 0.2
+      },
+      {
+        "targetValue": 727,
+        "secondsToTarget": 9
+      },
+      {
+        "targetValue": 728,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 657,
+        "secondsToTarget": 6
+      }
+    ]
+  },
+
+  "oilTemp": {
+    "events": [
+      {
+        "targetValue": 15,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 16,
+        "secondsToTarget": 12
+      }
+    ]
+  },
+
+  "n1": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 15,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 25,
+        "secondsToTarget": 8
+      },
+      {
+        "targetValue": 33,
+        "secondsToTarget": 11
+      },
+      {
+        "targetValue": 61,
+        "secondsToTarget": 14
+      },
+      {
+        "targetValue": 60,
+        "secondsToTarget": 1
+      }
+    ]
+  },
+
+  "hydPress": {
+    "events": [
+      {
+        "targetValue": 3010,
+        "secondsToTarget": 13
+      }
+    ]
+  },
+
+  "propRpm": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 2,
+        "secondsToTarget": 0.1
+      },
+      {
+        "targetValue": 3,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 4,
+        "secondsToTarget": 0.1
+      },
+      {
+        "targetValue": 5,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 6,
+        "secondsToTarget": 0.1
+      }
+    ]
+  }
+}

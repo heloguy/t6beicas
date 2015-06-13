@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Start Items -->
+
+    <string-array name="start_navigation_labels">
+        <item>Normal Start</item>
+        <item>Hot Start</item>
+        <item>Hung Start</item>
+        <item>No Start</item>
+    </string-array>
+
+    <string-array name="start_navigation_file_names">
+        <item>engine_data_normal_start</item>
+        <item>engine_data_hot_start</item>
+        <item>engine_data_hung_start</item>
+        <item>engine_data_no_start</item>
+    </string-array>
+
+    <!-- Engine EP Items-->
+
+    <string-array name="engine_ep_navigation_labels">
+        <item>Compressor Stall</item>
+        <item>Engine Flameout</item>
+        <item>Engine Seizure</item>
+        <item>Fire In Flight (High ITT)</item>
+        <item>Prop Sleeve Touchdown</item>
+        <item>Uncommanded Power Changes</item>
+        <item>Uncommanded Prop Feather</item>
+    </string-array>
+
+    <string-array name="engine_ep_navigation_file_names">
+        <item>engine_data_compressor_stall</item>
+        <item>engine_data_flameout</item>
+        <item>engine_data_seizure</item>
+        <item>engine_data_fire_itt</item>
+        <item>engine_data_pstd</item>
+        <item>engine_data_ucpc</item>
+        <item>engine_data_ucpf</item>
+    </string-array>
+</resources>

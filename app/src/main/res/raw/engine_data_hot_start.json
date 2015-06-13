@@ -1,0 +1,129 @@
+{
+  "torque": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 7
+      },
+      {
+        "targetValue": 2,
+        "secondsToTarget": 21
+      },
+      {
+        "targetValue": 6,
+        "secondsToTarget": 4
+      }
+    ]
+  },
+
+  "oilPress": {
+    "events": [
+      {
+        "targetValue": 5,
+        "secondsToTarget": 6
+      },
+      {
+        "targetValue": 20,
+        "secondsToTarget": 6
+      },
+
+      {
+        "targetValue": 92,
+        "secondsToTarget": 10
+      },
+
+      {
+        "targetValue": 100,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 0,
+        "secondsToTarget": 10
+      }
+    ]
+  },
+
+  "itt": {
+    "events": [
+      {
+        "targetValue": 157,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 158,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 643,
+        "secondsToTarget": 9
+      },
+      {
+        "targetValue": 742,
+        "secondsToTarget": 8
+      },
+      {
+        "targetValue": 915,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 657,
+        "secondsToTarget": 6
+      }
+    ]
+  },
+
+  "oilTemp": {
+    "events": [
+      {
+        "targetValue": 15,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 16,
+        "secondsToTarget": 12
+      }
+    ]
+  },
+
+  "n1": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 15,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 25,
+        "secondsToTarget": 8
+      },
+      {
+        "targetValue": 33,
+        "secondsToTarget": 11
+      },
+      {
+        "targetValue": 15,
+        "secondsToTarget": 7
+      }
+    ]
+  },
+
+  "hydPress": {
+    "events": [
+      {
+        "targetValue": 3010,
+        "secondsToTarget": 13
+      },
+      {
+        "targetValue": 3011,
+        "secondsToTarget": 11
+      },
+      {
+        "targetValue": 0,
+        "secondsToTarget": 15
+      }
+    ]
+  }
+}

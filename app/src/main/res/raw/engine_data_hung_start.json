@@ -1,0 +1,121 @@
+{
+  "torque": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 7
+      },
+      {
+        "targetValue": 2,
+        "secondsToTarget": 21
+      },
+      {
+        "targetValue": 6,
+        "secondsToTarget": 4
+      }
+    ]
+  },
+
+  "oilPress": {
+    "events": [
+      {
+        "targetValue": 5,
+        "secondsToTarget": 6
+      },
+      {
+        "targetValue": 20,
+        "secondsToTarget": 6
+      },
+
+      {
+        "targetValue": 92,
+        "secondsToTarget": 10
+      },
+
+      {
+        "targetValue": 0,
+        "secondsToTarget": 10
+      }
+    ]
+  },
+
+  "itt": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 7
+      },
+      {
+        "targetValue": 622,
+        "secondsToTarget": 8
+      },
+      {
+        "targetValue": 615,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 727,
+        "secondsToTarget": 9
+      },
+      {
+        "targetValue": 728,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 657,
+        "secondsToTarget": 6
+      }
+    ]
+  },
+
+  "oilTemp": {
+    "events": [
+      {
+        "targetValue": 15,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 16,
+        "secondsToTarget": 12
+      }
+    ]
+  },
+
+  "n1": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 15,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 25,
+        "secondsToTarget": 8
+      },
+      {
+        "targetValue": 29,
+        "secondsToTarget": 10
+      },
+      {
+        "targetValue": 30,
+        "secondsToTarget": 3
+      },
+      {
+        "targetValue": 20,
+        "secondsToTarget": 4
+      }
+    ]
+  },
+
+  "hydPress": {
+    "events": [
+      {
+        "targetValue": 3010,
+        "secondsToTarget": 13
+      }
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gauge="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".18">
+
+        <LinearLayout
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/border">
+
+            <com.matt.t_6beicashelper.T6NpGauge
+                android:id="@+id/prop_rpm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                gauge:textUnitLabel="NP: " />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.matt.t_6beicashelper.T6Gauge
+            android:id="@+id/torque"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            gauge:divisions="11"
+            gauge:rangeColors="@array/torque_rangeColors"
+            gauge:rangeValues="@array/torque_ranges"
+            gauge:scaleEndValue="110"
+            gauge:showGaugeText="true"
+            gauge:showNeedle="true"
+            gauge:showScale="true"
+            gauge:subdivisions="100"
+            gauge:textUnitBelow="%"
+            gauge:textUnitLabel="TORQUE" />
+
+        <com.matt.t_6beicashelper.T6Gauge
+            android:id="@+id/oilpress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            gauge:divisions="11"
+            gauge:rangeColors="@array/oilpress_rangeColors"
+            gauge:rangeValues="@array/oilpress_ranges"
+            gauge:scaleEndValue="220"
+            gauge:subdivisions="100"
+            gauge:textUnitBelow="PSI"
+            gauge:textUnitLabel="OIL PRESS" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.matt.t_6beicashelper.T6Gauge
+            android:id="@+id/itt"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            gauge:divisions="12"
+            gauge:rangeColors="@array/itt_rangeColors"
+            gauge:rangeValues="@array/itt_ranges"
+            gauge:scaleEndValue="1200"
+            gauge:scaleStartValue="0"
+            gauge:subdivisions="100"
+            gauge:textUnitBelow="&#xb0;C"
+            gauge:textUnitLabel="ITT" />
+
+        <com.matt.t_6beicashelper.T6Gauge
+            android:id="@+id/oiltemp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            gauge:divisions="12"
+            gauge:rangeColors="@array/oiltemp_rangeColors"
+            gauge:rangeValues="@array/oiltemp_ranges"
+            gauge:scaleEndValue="120"
+            gauge:subdivisions="100"
+            gauge:textUnitBelow="&#xb0;C"
+            gauge:textUnitLabel="OIL TEMP" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.matt.t_6beicashelper.T6Gauge
+            android:id="@+id/n1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            gauge:divisions="11"
+            gauge:rangeColors="@array/n1_rangeColors"
+            gauge:rangeValues="@array/n1_ranges"
+            gauge:scaleEndValue="110"
+            gauge:subdivisions="100"
+            gauge:textUnitBelow="%"
+            gauge:textUnitLabel="N1" />
+
+        <com.matt.t_6beicashelper.T6Gauge
+            android:id="@+id/hydpress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            gauge:divisions="10"
+            gauge:rangeColors="@array/hydpress_rangeColors"
+            gauge:rangeValues="@array/hydpress_ranges"
+            gauge:scaleEndValue="4000"
+            gauge:subdivisions="100"
+            gauge:textUnitBelow="PSI"
+            gauge:textUnitLabel="HYD PRESS" />
+    </LinearLayout>
+
+</LinearLayout>

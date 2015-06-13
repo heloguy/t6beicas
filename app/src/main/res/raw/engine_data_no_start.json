@@ -1,0 +1,66 @@
+{
+  "torque": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 7
+      },
+      {
+        "targetValue": 2,
+        "secondsToTarget": 21
+      },
+      {
+        "targetValue": 6,
+        "secondsToTarget": 4
+      }
+    ]
+  },
+
+  "oilPress": {
+    "events": [
+      {
+        "targetValue": 5,
+        "secondsToTarget": 30
+      }
+    ]
+  },
+
+  "itt": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 7
+      }
+    ]
+  },
+
+  "oilTemp": {
+    "events": [
+      {
+        "targetValue": 15,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 16,
+        "secondsToTarget": 12
+      }
+    ]
+  },
+
+  "n1": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 4
+      }
+    ]
+  },
+  "hydPress": {
+    "events": [
+      {
+        "targetValue": 500,
+        "secondsToTarget": 30
+      }
+    ]
+  }
+}

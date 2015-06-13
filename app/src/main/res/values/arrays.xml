@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Torque -->
+
+    <string-array name="torque_ranges">
+        <item>100</item>
+        <item>110</item>
+    </string-array>
+
+    <string-array name="torque_rangeColors">
+        <item>#FFFFFF</item>
+        <item>#E7202B</item>
+    </string-array>
+
+    <!-- Oil Pressure -->
+
+    <string-array name="oilpress_ranges">
+        <item>40</item>
+        <item>90</item>
+        <item>120</item>
+        <item>200</item>
+        <item>220</item>
+    </string-array>
+
+    <string-array name="oilpress_rangeColors">
+        <item>#E7202B</item>
+        <item>#E8E721</item>
+        <item>#1BCA21</item>
+        <item>#FFFFFF</item>
+        <item>#E7202B</item>
+    </string-array>
+
+    <!-- ITT -->
+
+    <string-array name="itt_ranges">
+        <item>1000</item>
+        <item>1200</item>
+    </string-array>
+
+    <string-array name="itt_rangeColors">
+        <item>#FFFFFF</item>
+        <item>#E7202B</item>
+    </string-array>
+
+    <!-- Oil Temp -->
+
+    <string-array name="oiltemp_ranges">
+        <item>10</item>
+        <item>105</item>
+        <item>110</item>
+        <item>120</item>
+    </string-array>
+
+    <string-array name="oiltemp_rangeColors">
+        <item>#FFFFFF</item>
+        <item>#1BCA21</item>
+        <item>#E8E721</item>
+        <item>#E7202B</item>
+    </string-array>
+
+    <!-- N1 -->
+
+    <string-array name="n1_ranges">
+        <item>60</item>
+        <item>105</item>
+        <item>110</item>
+    </string-array>
+
+    <string-array name="n1_rangeColors">
+        <item>#FFFFFF</item>
+        <item>#1BCA21</item>
+        <item>#E7202B</item>
+    </string-array>
+
+    <!-- Hydraulic Pressure -->
+
+    <string-array name="hydpress_ranges">
+        <item>1880</item>
+        <item>2880</item>
+        <item>3220</item>
+        <item>4000</item>
+    </string-array>
+
+    <string-array name="hydpress_rangeColors">
+        <item>#E8E721</item>
+        <item>#FFFFFF</item>
+        <item>#1BCA21</item>
+        <item>#E8E721</item>
+    </string-array>
+
+</resources> 
