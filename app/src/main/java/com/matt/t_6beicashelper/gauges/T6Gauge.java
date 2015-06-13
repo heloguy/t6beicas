@@ -1,4 +1,4 @@
-package com.matt.t_6beicashelper;
+package com.matt.t_6beicashelper.gauges;
 
 import android.content.Context;
 import android.content.res.TypedArray;

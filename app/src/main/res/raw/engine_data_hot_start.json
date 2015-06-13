@@ -158,5 +158,138 @@
         "secondsToTarget": 0.1
       }
     ]
+  },
+
+  "fuelFlow": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 75,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 76,
+        "secondsToTarget": 8
+      },
+      {
+        "targetValue": 80,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 81,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 85,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 86,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 90,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 91,
+        "secondsToTarget": 5
+      },
+      {
+        "targetValue": 95,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 96,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 100,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 101,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 105,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 106,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 110,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 111,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 115,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 116,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 120,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 121,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 125,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 126,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 130,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 131,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 135,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 136,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 140,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 141,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 150,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 151,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 155,
+        "secondsToTarget": 0.0001
+      }
+    ]
   }
 }

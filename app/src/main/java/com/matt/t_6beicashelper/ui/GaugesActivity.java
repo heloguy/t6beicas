@@ -1,4 +1,4 @@
-package com.matt.t_6beicashelper;
+package com.matt.t_6beicashelper.ui;
 
 /*******************************************************************************
  * Copyright (c) 2012 Evelina Vrabie
@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.matt.t_6beicashelper.R;
 
 import java.util.ArrayList;
 

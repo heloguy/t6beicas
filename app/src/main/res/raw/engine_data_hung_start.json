@@ -146,5 +146,34 @@
         "secondsToTarget": 0.1
       }
     ]
+  },
+
+  "fuelFlow": {
+    "events": [
+      {
+        "targetValue": 1,
+        "secondsToTarget": 4
+      },
+      {
+        "targetValue": 75,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 76,
+        "secondsToTarget": 8
+      },
+      {
+        "targetValue": 80,
+        "secondsToTarget": 0.0001
+      },
+      {
+        "targetValue": 81,
+        "secondsToTarget": 1
+      },
+      {
+        "targetValue": 85,
+        "secondsToTarget": 0.001
+      }
+    ]
   }
 }

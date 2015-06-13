@@ -12,10 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import com.matt.t_6beicashelper.T6Gauge.EngineEvent;
+import com.matt.t_6beicashelper.gauges.T6Gauge;
+import com.matt.t_6beicashelper.gauges.T6Gauge.EngineEvent;
 
 /**
  * Created by Matt on 6/10/15.

@@ -1,4 +1,4 @@
-package com.matt.t_6beicashelper;
+package com.matt.t_6beicashelper.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.matt.t_6beicashelper.R;
 
 /**
  * Created by Matt on 6/12/15.

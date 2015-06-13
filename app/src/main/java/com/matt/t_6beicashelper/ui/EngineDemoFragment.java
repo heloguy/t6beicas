@@ -1,4 +1,4 @@
-package com.matt.t_6beicashelper;
+package com.matt.t_6beicashelper.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,7 +8,14 @@ import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextSwitcher;
+
+import com.matt.t_6beicashelper.EngineEventParser;
+import com.matt.t_6beicashelper.R;
+import com.matt.t_6beicashelper.gauges.T6AmpGauge;
+import com.matt.t_6beicashelper.gauges.T6FuelFlowGauge;
+import com.matt.t_6beicashelper.gauges.T6Gauge;
+import com.matt.t_6beicashelper.gauges.T6NpGauge;
+import com.matt.t_6beicashelper.gauges.T6VoltGauge;
 
 import java.util.ArrayList;
 
@@ -26,6 +33,9 @@ public class EngineDemoFragment extends Fragment {
     private static final String OIL_TEMP_GAUGE_JSON_KEY = "oilTemp";
     private static final String HYD_PRESS_GAUGE_JSON_KEY = "hydPress";
     private static final String PROP_RPM_GAUGE_JSON_KEY = "propRpm";
+    private static final String FUEL_FLOW_GAUGE_JSON_KEY = "fuelFlow";
+    private static final String VOLT_GAUGE_JSON_KEY = "voltage";
+    private static final String AMP_GAUGE_JSON_KEY = "amps";
 
     private T6Gauge torque;
     private T6Gauge oilPress;
@@ -34,10 +44,10 @@ public class EngineDemoFragment extends Fragment {
     private T6Gauge n1;
     private T6Gauge hydPress;
     private T6NpGauge propRpm;
-
+    private T6FuelFlowGauge ffGauge;
+    private T6VoltGauge voltGauge;
+    private T6AmpGauge ampGauge;
     private final ArrayList<Pair<String, T6Gauge>> gauges = new ArrayList<>();
-
-//    private String mRawFileName;
 
     public EngineDemoFragment() {}
 
@@ -55,6 +65,9 @@ public class EngineDemoFragment extends Fragment {
         n1 = (T6Gauge) rootView.findViewById(R.id.n1);
         hydPress = (T6Gauge) rootView.findViewById(R.id.hydpress);
         propRpm = (T6NpGauge) rootView.findViewById(R.id.prop_rpm);
+        ffGauge = (T6FuelFlowGauge) rootView.findViewById(R.id.fuel_flow);
+        voltGauge = (T6VoltGauge) rootView.findViewById(R.id.voltage);
+        ampGauge = (T6AmpGauge) rootView.findViewById(R.id.amps);
 
         gauges.add(new Pair<>(ITT_GAUGE_JSON_KEY, itt));
         gauges.add(new Pair<>(N1_GAUGE_JSON_KEY, n1));
@@ -63,6 +76,10 @@ public class EngineDemoFragment extends Fragment {
         gauges.add(new Pair<>(OIL_TEMP_GAUGE_JSON_KEY, oilTemp));
         gauges.add(new Pair<>(HYD_PRESS_GAUGE_JSON_KEY, hydPress));
         gauges.add(new Pair<>(PROP_RPM_GAUGE_JSON_KEY, (T6Gauge) propRpm));
+        gauges.add(new Pair<>(FUEL_FLOW_GAUGE_JSON_KEY, (T6Gauge) ffGauge));
+        gauges.add(new Pair<>(VOLT_GAUGE_JSON_KEY, (T6Gauge) voltGauge));
+        gauges.add(new Pair<>(AMP_GAUGE_JSON_KEY, (T6Gauge) ampGauge));
+
 
         startGauges(rawFileName);
 

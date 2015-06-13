@@ -34,6 +34,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class GaugeView extends View {
@@ -563,7 +564,7 @@ public class GaugeView extends View {
         }
     }
 
-    public Paint getDefaultTextValuePaint() {
+    protected Paint getDefaultTextValuePaint() {
         final Paint paint = new Paint(Paint.LINEAR_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
         paint.setColor(mTextValueColor);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -575,7 +576,7 @@ public class GaugeView extends View {
         return paint;
     }
 
-    public Paint getDefaultTextUnitPaint() {
+    protected Paint getDefaultTextUnitPaint() {
         final Paint paint = new Paint(Paint.LINEAR_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
         paint.setColor(mTextUnitColor);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
@@ -775,7 +776,7 @@ public class GaugeView extends View {
                 // Draw a division tick
                 canvas.drawLine(0.5f, y1, 0.5f, y3, paint);
                 // Draw the text 0.15 away from the division tick
-                drawTextOnCanvasWithMagnifier(canvas, valueString(value), 0.5f, y3 + 0.045f, paint);
+                drawTextOnCanvasWithMagnifier(canvas, valueString(mScaleStartValue+value), 0.5f, y3 + 0.045f, paint);
             } else {
                 // Draw a subdivision tick
                 canvas.drawLine(0.5f, y1, 0.5f, y2, paint);
