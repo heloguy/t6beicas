@@ -1,107 +1,71 @@
 {
-  "torque": {
-    "events": [
-      {
-        "targetValue": 54,
-        "secondsToTarget": 0.001
-      }
-    ]
+  "initialize": {
+    "torque": 54,
+    "oilPress": 108,
+    "itt": 637,
+    "n1": 93,
+    "oilTemp": 66,
+    "hydPress": 3010,
+    "propRpm": 100,
+    "fuelFlow": 450
   },
-
-  "oilPress": {
-    "events": [
-      {
-        "targetValue": 108,
-        "secondsToTarget": 0.001
-      }
-    ]
-  },
-
-  "itt": {
-    "events": [
-      {
-        "targetValue": 637,
-        "secondsToTarget": 0.001
-      }
-    ]
-  },
-
-  "oilTemp": {
-    "events": [
-      {
-        "targetValue": 66,
-        "secondsToTarget": 0.001
-      }
-    ]
-  },
-
-  "n1": {
-    "events": [
-      {
-        "targetValue": 93,
-        "secondsToTarget": 0.001
-      }
-    ]
-  },
-
-  "hydPress": {
-    "events": [
-      {
-        "targetValue": 3010,
-        "secondsToTarget": 0.001
-      },
-      {
-        "targetValue": 3009,
-        "secondsToTarget": 3
-      },
-      {
-        "targetValue": 11,
-        "secondsToTarget": 3
-      },
-      {
-        "targetValue": 10,
-        "secondsToTarget": 1
-      },
-      {
-        "targetValue": 0,
-        "secondsToTarget": 0.001
-      }
-    ]
-  },
-
-  "propRpm": {
-    "events": [
-      {
-        "targetValue": 100,
-        "secondsToTarget": 0.001
-      }
-    ]
-  },
-
-  "fuelFlow": {
-    "events": [
-      {
-        "targetValue": 450,
-        "secondsToTarget": 0.0001
-      }
-    ]
-  },
-
-  "voltage": {
-    "events": [
-      {
-        "targetValue": 28,
-        "secondsToTarget": 0.0001
-      }
-    ]
-  },
-
-  "amps": {
-    "events": [
-      {
-        "targetValue": -10,
-        "secondsToTarget": 0.0001
-      }
-    ]
+  "execute": {
+    "torque": {
+      "events": []
+    },
+    "oilPress": {
+      "events": []
+    },
+    "itt": {
+      "events": []
+    },
+    "oilTemp": {
+      "events": []
+    },
+    "n1": {
+      "events": []
+    },
+    "hydPress": {
+      "events": [
+        {
+          "targetValue": 3009,
+          "secondsToTarget": 3
+        },
+        {
+          "targetValue": 11,
+          "secondsToTarget": 3
+        },
+        {
+          "targetValue": 10,
+          "secondsToTarget": 1
+        },
+        {
+          "targetValue": 0,
+          "secondsToTarget": 0.001
+        }
+      ]
+    },
+    "propRpm": {
+      "events": []
+    },
+    "fuelFlow": {
+      "events": []
+    },
+    "voltage": {
+      "events": [
+        {
+          "targetValue": 28,
+          "secondsToTarget": 0.0001
+        }
+      ]
+    },
+    "amps": {
+      "events": [
+        {
+          "targetValue": -10,
+          "secondsToTarget": 0.0001
+        }
+      ]
+    }
   }
 }

@@ -63,6 +63,7 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
     private static final String VOLT_GAUGE_JSON_KEY = "voltage";
     private static final String AMP_GAUGE_JSON_KEY = "amps";
     private boolean mIsComplete = false;
+    private int mActiveGauges = 0;
 
 
     private T6Gauge torque;
@@ -143,9 +144,14 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
         menu.findItem(R.id.action_stop).setVisible(true);
     }
 
-    public void resetGauges() {
+    private void resetVariables() {
         mCompleteGauges = 0;
         mIsComplete = false;
+        mActiveGauges = 0;
+    }
+
+    public void resetGauges() {
+        resetVariables();
 
         for (Pair<String, T6Gauge> pair : gauges) {
             pair.second.resetGauge(null);
@@ -161,6 +167,9 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
 
         for (Pair<String, T6Gauge> pair : gauges) {
             pair.second.initialize(null);
+            if(pair.second.getEventCount() > 0) {
+                mActiveGauges++;
+            }
         }
 
         setButtonToShow(R.id.action_play);
@@ -183,7 +192,7 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
     }
 
     private boolean allGaugesComplete() {
-        return mCompleteGauges == gauges.size();
+        return mCompleteGauges == mActiveGauges;
     }
 
     private int mCompleteGauges;

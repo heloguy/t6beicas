@@ -86,6 +86,10 @@ public class T6Gauge extends GaugeView {
         return paint;
     }
 
+    public int getEventCount() {
+        return mEngineEvents.size();
+    }
+
     @Override
     public float getDefaultNeedleHeight(TypedArray a) {
         return NEEDLE_HEIGHT;

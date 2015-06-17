@@ -170,7 +170,7 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
-//        setTitle(item.getLabel());
+        setTitle(item.getLabel());
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
