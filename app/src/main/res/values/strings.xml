@@ -5,4 +5,8 @@
     <string name="engine_start_section_title">Starts</string>
     <string name="engine_eps_section_title">Engine / Prop</string>
     <string name="hydraulics_section_title">Hydraulics</string>
+
+    <string name="about_item_title">About</string>
+    <string name="flashcards_item_title">Flashcards</string>
+    <string name="random_item_title">Random</string>
 </resources>

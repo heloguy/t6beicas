@@ -24,7 +24,7 @@ import com.matt.t_6beicashelper.R;
 
 import java.util.ArrayList;
 
-public class GaugesActivity extends Activity implements ListView.OnItemClickListener {
+public class MainActivity extends Activity implements ListView.OnItemClickListener {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private CharSequence mDrawerTitle;
@@ -33,6 +33,10 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
     private NavDrawerAdapter mDrawerAdapter;
     private static final int NAV_MENU_SECTION_ID = 100;
     private static final int NAV_MENU_DEMO_ITEM = 101;
+    private static final int NAV_MENU_ABOUT = 102;
+    private static final int NAV_MENU_FLASHCARDS = 103;
+    private static final int NAV_MENU_RANDOM = 104;
+    private static final int DEFAULT_NAV_ITEM = 0;
     private Menu mMenu;
 
     @Override
@@ -77,7 +81,7 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         if (savedInstanceState == null) {
-            selectItem(1);
+            selectItem(DEFAULT_NAV_ITEM);
         }
     }
 
@@ -85,10 +89,16 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
     private NavDrawerItem[] getNavigationDrawerList() {
         ArrayList<NavDrawerItem> drawerItems = new ArrayList<>();
 
-        String[] drawerTitles = getResources().getStringArray(R.array.start_navigation_labels);
-        String[] fileNames = getResources().getStringArray(R.array.start_navigation_file_names);
+        // Miscellaneous
+
+        drawerItems.add(NavMenuItem.create(NAV_MENU_ABOUT, getString(R.string.about_item_title), "", "ic_launcher", false, this));
+        drawerItems.add(NavMenuItem.create(NAV_MENU_FLASHCARDS, getString(R.string.flashcards_item_title), "", "ic_launcher", false, this));
+        drawerItems.add(NavMenuItem.create(NAV_MENU_ABOUT, getString(R.string.random_item_title), "", "ic_launcher", false, this));
 
         // Engine Starts
+
+        String[] drawerTitles = getResources().getStringArray(R.array.start_navigation_labels);
+        String[] fileNames = getResources().getStringArray(R.array.start_navigation_file_names);
 
         drawerItems.add(NavMenuSection.create(NAV_MENU_SECTION_ID, getString(R.string.engine_start_section_title)));
 
@@ -141,6 +151,13 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
         int id = item.getId();
 
         switch (id) {
+            case NAV_MENU_ABOUT:
+                handleAboutSelected(position);
+                break;
+            case NAV_MENU_FLASHCARDS:
+                break;
+            case NAV_MENU_RANDOM:
+                break;
             case NAV_MENU_SECTION_ID:
                 return;
             case NAV_MENU_DEMO_ITEM:
@@ -171,6 +188,19 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
         setTitle(item.getLabel());
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
+
+    private void handleAboutSelected(int position) {
+        AboutFragment fragment = new AboutFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .commit();
+
+        // Highlight the selected item, update the title, and close the drawer
+        mDrawerList.setItemChecked(position, true);
+        setTitle(getString(R.string.about_item_title));
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
