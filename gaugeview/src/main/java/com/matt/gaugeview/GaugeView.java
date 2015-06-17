@@ -71,7 +71,6 @@ public class GaugeView extends View {
     public static final int SCALE_SUBDIVISIONS = 5;
 
     public static final String TARGET_REACHED = "TARGET_REACHED";
-    public static final String RESET_COMPLETE = "RESET_COMPLETE";
 
     public static final int[] OUTER_SHADOW_COLORS = {Color.argb(40, 255, 254, 187), Color.argb(20, 255, 247, 219),
             Color.argb(5, 255, 255, 255)};
@@ -175,6 +174,7 @@ public class GaugeView extends View {
     private float mNeedleAcceleration;
     private long mNeedleLastMoved = -1;
     private boolean mNeedleInitialized;
+    protected String mGaugeEvent;
 
     public GaugeView(final Context context, final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
@@ -218,6 +218,10 @@ public class GaugeView extends View {
         return a.getFloat(R.styleable.GaugeView_needleWidth, NEEDLE_WIDTH);
     }
 
+    protected boolean showOuterShadow() {
+        return mShowOuterShadow;
+    }
+
     private void readAttrs(final Context context, final AttributeSet attrs, final int defStyle) {
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.GaugeView, defStyle, 0);
         mShowOuterShadow = a.getBoolean(R.styleable.GaugeView_showOuterShadow, SHOW_OUTER_SHADOW);
@@ -229,7 +233,7 @@ public class GaugeView extends View {
         mShowRanges = a.getBoolean(R.styleable.GaugeView_showRanges, SHOW_RANGES);
         mShowText = a.getBoolean(R.styleable.GaugeView_showGaugeText, SHOW_TEXT);
 
-        mOuterShadowWidth = mShowOuterShadow ? a.getFloat(R.styleable.GaugeView_outerShadowWidth, OUTER_SHADOW_WIDTH) : 0.0f;
+        mOuterShadowWidth = showOuterShadow() ? a.getFloat(R.styleable.GaugeView_outerShadowWidth, OUTER_SHADOW_WIDTH) : 0.0f;
         mOuterBorderWidth = mShowOuterBorder ? a.getFloat(R.styleable.GaugeView_outerBorderWidth, OUTER_BORDER_WIDTH) : 0.0f;
         mOuterRimWidth = mShowOuterRim ? a.getFloat(R.styleable.GaugeView_outerRimWidth, OUTER_RIM_WIDTH) : 0.0f;
         mInnerRimWidth = mShowInnerRim ? a.getFloat(R.styleable.GaugeView_innerRimWidth, INNER_RIM_WIDTH) : 0.0f;
@@ -364,14 +368,18 @@ public class GaugeView extends View {
                 mFaceRect.bottom - mScalePosition);
     }
 
+    protected boolean showOuterBorder() {
+        return mShowOuterBorder;
+    }
+
     private void initDrawingTools() {
         mBackgroundPaint = new Paint();
         mBackgroundPaint.setFilterBitmap(true);
 
-        if (mShowOuterShadow) {
+        if (showOuterShadow()) {
             mOuterShadowPaint = getDefaultOuterShadowPaint();
         }
-        if (mShowOuterBorder) {
+        if (showOuterBorder()) {
             mOuterBorderPaint = getDefaultOuterBorderPaint();
         }
         if (mShowOuterRim) {
@@ -708,10 +716,10 @@ public class GaugeView extends View {
     }
 
     private void drawRim(final Canvas canvas) {
-        if (mShowOuterShadow) {
+        if (showOuterShadow()) {
             canvas.drawOval(mOuterShadowRect, mOuterShadowPaint);
         }
-        if (mShowOuterBorder) {
+        if (showOuterBorder()) {
             canvas.drawOval(mOuterBorderRect, mOuterBorderPaint);
         }
         if (mShowOuterRim) {
@@ -908,6 +916,8 @@ public class GaugeView extends View {
             if(mEventReceivedListener != null) {
                 mEventReceivedListener.notifyOfEvent(new ChangeEvent(TARGET_REACHED));
             }
+
+            return;
         }
 
         if (-1 != mNeedleLastMoved) {

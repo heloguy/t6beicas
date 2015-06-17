@@ -7,9 +7,9 @@ import android.graphics.Paint;
 import android.graphics.RadialGradient;
 import android.graphics.Shader;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import com.matt.gaugeview.GaugeView;
+import com.matt.t_6beicashelper.R;
 
 import java.util.LinkedList;
 
@@ -17,7 +17,21 @@ public class T6Gauge extends GaugeView {
     private static final float SCALE_START_ANGLE = 50.0f;
     private static final float NEEDLE_WIDTH = 0.025f;
     private static final float NEEDLE_HEIGHT = 0.2f;
+
     private final LinkedList<EngineEvent> mEngineEvents = new LinkedList<EngineEvent>();
+    private GaugeActionsCompleteObserver mCompleteObserver;
+
+    private EngineEvent mInitialEvent;
+
+    private TypedArray mAttributes;
+
+    protected TypedArray getAttributes() {
+        return mAttributes;
+    }
+
+    public interface GaugeActionsCompleteObserver {
+        public void onGaugeActionsComplete();
+    }
 
     public T6Gauge(Context ctx) {
         super(ctx);
@@ -26,6 +40,7 @@ public class T6Gauge extends GaugeView {
     public T6Gauge(final Context context, final AttributeSet attrs, final int defStyle) {
         super(context, attrs, defStyle);
         this.SHOW_TEXT = true;
+//        mAttributes = context.obtainStyledAttributes(attrs, com.matt.gaugeview.R.styleable.T6Gauge, defStyle, 0);
     }
 
     public T6Gauge(final Context context, final AttributeSet attrs) {
@@ -82,6 +97,16 @@ public class T6Gauge extends GaugeView {
     }
 
     @Override
+    protected boolean showOuterBorder() {
+        return false;
+    }
+
+    @Override
+    protected boolean showOuterShadow() {
+        return false;
+    }
+
+    @Override
     public float getDefaultNeedleY() {
         return 0.38f;
     }
@@ -92,39 +117,87 @@ public class T6Gauge extends GaugeView {
         }
     }
 
+    public void setInitialEvent(EngineEvent e) {
+        if(e != null) {
+            mInitialEvent = e;
+        }
+    }
+
     private EngineEvent getNextEvent() {
         if (!mEngineEvents.isEmpty()) {
             return mEngineEvents.removeFirst();
         }
 
+
         return null;
     }
 
-    private void executeNextEvent() {
+    private void notifyDone(GaugeActionsCompleteObserver observer) {
+        if (observer != null)
+            observer.onGaugeActionsComplete();
+    }
+
+    private EngineEvent executeNextEvent() {
 //        Log.i("Time", Float.toString((System.currentTimeMillis() - startTime) / 1000.0f));
 
         EngineEvent e = getNextEvent();
 
         if (e == null) {
-            return;
+            return null;
         }
 
 //        Log.i(getTextUnitLabel(), String.format("Target Value: %d, Time to target: %f", e.targetValue, e.timeToTarget));
-        executeNextAction(e);
+        initializeNextAction(e);
+
+        return e;
     }
 
-    private void executeNextAction(EngineEvent e) {
+    public void resetGauge(final GaugeActionsCompleteObserver observer) {
+        final EventReceivedListener listener = new EventReceivedListener() {
+            @Override
+            public void notifyOfEvent(ChangeEvent event) {
+                switch (event.name) {
+                    case TARGET_REACHED:
+                        if (executeNextEvent() == null) {
+                            notifyDone(observer);
+                        }
+                }
+            }
+        };
+
+        setEventListener(listener);
+        clearEvents();
+        setTimeToTarget(LIGHTSPEED);
+    }
+
+    private void initializeNextAction(EngineEvent e) {
         this.setTargetValue(e.targetValue);
         this.setTimeToTarget(e.timeToTarget);
     }
 
-    public void start() {
-        EventReceivedListener listener = new EventReceivedListener() {
+    private static final int DEFAULT_INITIAL_VALUE = 0;
+
+    public void initialize(final GaugeActionsCompleteObserver observer) {
+        setEventListener(null);
+
+        // Add events for initial values.
+        if(mInitialEvent == null) {
+            mInitialEvent = new EngineEvent(0, LIGHTSPEED);
+        }
+
+        initializeNextAction(mInitialEvent);
+
+    }
+
+    public void start(final GaugeActionsCompleteObserver observer) {
+        final EventReceivedListener listener = new EventReceivedListener() {
             @Override
             public void notifyOfEvent(ChangeEvent event) {
-                switch(event.name) {
+                switch (event.name) {
                     case TARGET_REACHED:
-                        executeNextEvent();
+                        if (executeNextEvent() == null) {
+                            notifyDone(observer);
+                        }
                 }
             }
         };
@@ -133,13 +206,7 @@ public class T6Gauge extends GaugeView {
         executeNextEvent();
     }
 
-    private static final float LIGHTSPEED = 0.00000000001f;
-
-    public void reset() {
-        clearEvents();
-        setTimeToTarget(LIGHTSPEED);
-        addEvent(new EngineEvent(0, LIGHTSPEED));
-    }
+    public static final float LIGHTSPEED = 0.00000000001f;
 
     public void clearEvents() {
         if (mEngineEvents == null) {

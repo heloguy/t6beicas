@@ -1,0 +1,119 @@
+{
+  "torque": {
+    "events": [
+      {
+        "targetValue": 54,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 55,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 120,
+        "secondsToTarget": 3
+      },
+      {
+        "targetValue": 106,
+        "secondsToTarget": 3
+      }
+    ]
+  },
+
+  "oilPress": {
+    "events": [
+      {
+        "targetValue": 108,
+        "secondsToTarget": 0.001
+      }
+    ]
+  },
+
+  "itt": {
+    "events": [
+      {
+        "targetValue": 637,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 635,
+        "secondsToTarget": 6
+      },
+      {
+        "targetValue": 612,
+        "secondsToTarget": 5
+      }
+    ]
+  },
+
+  "oilTemp": {
+    "events": [
+      {
+        "targetValue": 45,
+        "secondsToTarget": 0.001
+      }
+    ]
+  },
+
+  "n1": {
+    "events": [
+      {
+        "targetValue": 90,
+        "secondsToTarget": 0.001
+      }
+    ]
+  },
+
+  "hydPress": {
+    "events": [
+      {
+        "targetValue": 3010,
+        "secondsToTarget": 0.001
+      }
+    ]
+  },
+
+  "propRpm": {
+    "events": [
+      {
+        "targetValue": 100,
+        "secondsToTarget": 0.1
+      },
+      {
+        "targetValue": 99,
+        "secondsToTarget": 5
+      },
+      {
+        "targetValue": 35,
+        "secondsToTarget": 6
+      }
+    ]
+  },
+
+  "fuelFlow": {
+    "events": [
+      {
+        "targetValue": 450,
+        "secondsToTarget": 0.0001
+      }
+    ]
+  },
+
+  "voltage": {
+    "events": [
+      {
+        "targetValue": 28,
+        "secondsToTarget": 0.0001
+      }
+    ]
+  },
+
+  "amps": {
+    "events": [
+      {
+        "targetValue": -10,
+        "secondsToTarget": 0.0001
+      }
+    ]
+  }
+}

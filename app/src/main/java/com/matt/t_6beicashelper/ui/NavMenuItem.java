@@ -15,15 +15,26 @@ public class NavMenuItem implements NavDrawerItem {
     private boolean updateActionBarTitle ;
     private String mRawFileName;
 
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public void setDescription(String mDescription) {
+        this.mDescription = mDescription;
+    }
+
+    private String mDescription;
+
     private NavMenuItem() {
     }
 
-    public static NavMenuItem create(int id, String label, String rawFileName, String icon, boolean updateActionBarTitle, Context context) {
+    public static NavMenuItem create(int id, String label, String rawFileName, String description, boolean updateActionBarTitle, Context context) {
         NavMenuItem item = new NavMenuItem();
         item.setId(id);
         item.setLabel(label);
         item.setRawFileName(rawFileName);
         item.setUpdateActionBarTitle(updateActionBarTitle);
+        item.setDescription(description);
         return item;
     }
 

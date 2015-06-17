@@ -2,7 +2,7 @@ package com.matt.t_6beicashelper.ui;
 
 /*******************************************************************************
  * Copyright (c) 2012 Evelina Vrabie
- *
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -12,8 +12,9 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +33,7 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
     private NavDrawerAdapter mDrawerAdapter;
     private static final int NAV_MENU_SECTION_ID = 100;
     private static final int NAV_MENU_DEMO_ITEM = 101;
+    private Menu mMenu;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -56,26 +58,25 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
                 mDrawerLayout,
-                R.drawable.ic_drawer,
                 R.string.app_name,
                 R.string.app_name
         ) {
             @Override
             public void onDrawerClosed(View drawerView) {
-                getActionBar().setTitle(mTitle);
+//                getActionBar().setTitle(mTitle);
                 invalidateOptionsMenu();
             }
 
             @Override
             public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
+//                getActionBar().setTitle(mDrawerTitle);
                 invalidateOptionsMenu();
             }
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
             selectItem(1);
         }
     }
@@ -91,7 +92,7 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
 
         drawerItems.add(NavMenuSection.create(NAV_MENU_SECTION_ID, getString(R.string.engine_start_section_title)));
 
-        for(int i = 0; i < drawerTitles.length; i++) {
+        for (int i = 0; i < drawerTitles.length; i++) {
             String title = drawerTitles[i];
             String filename = fileNames[i];
 
@@ -105,7 +106,21 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
         drawerTitles = getResources().getStringArray(R.array.engine_ep_navigation_labels);
         fileNames = getResources().getStringArray(R.array.engine_ep_navigation_file_names);
 
-        for(int i = 0; i < drawerTitles.length; i++) {
+        for (int i = 0; i < drawerTitles.length; i++) {
+            String title = drawerTitles[i];
+            String filename = fileNames[i];
+
+            drawerItems.add(NavMenuItem.create(NAV_MENU_DEMO_ITEM, title, filename, "ic_launcher", true, this));
+        }
+
+        // Hydraulic Malfunctions
+
+        drawerItems.add(NavMenuSection.create(NAV_MENU_SECTION_ID, getString(R.string.hydraulics_section_title)));
+
+        drawerTitles = getResources().getStringArray(R.array.hydraulic_navigation_labels);
+        fileNames = getResources().getStringArray(R.array.hydraulic_file_names);
+
+        for (int i = 0; i < drawerTitles.length; i++) {
             String title = drawerTitles[i];
             String filename = fileNames[i];
 
@@ -137,13 +152,12 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
     private EngineDemoFragment mEngineDemoFragment;
 
     private void handleNavDemoItemSelected(int position, NavMenuItem item) {
-        String rawFileName = item.getRawFileName();
+        EngineDemoFragment.EngineDemoInfo demoInfo = EngineDemoFragment.EngineDemoInfo.create()
+                .setFileName(item.getRawFileName())
+                .setTitle(item.getLabel());
 
-        if(mEngineDemoFragment == null) {
-            mEngineDemoFragment = new EngineDemoFragment();
-            Bundle args = new Bundle();
-            args.putString(EngineDemoFragment.ENGINE_RAW_FILE, rawFileName);
-            mEngineDemoFragment.setArguments(args);
+        if (mEngineDemoFragment == null) {
+            mEngineDemoFragment = new EngineDemoFragment(demoInfo);
 
             // Insert the fragment by replacing any existing fragment
             FragmentManager fragmentManager = getFragmentManager();
@@ -151,12 +165,12 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
                     .replace(R.id.content_frame, mEngineDemoFragment)
                     .commit();
         } else {
-            mEngineDemoFragment.startGauges(rawFileName);
+            mEngineDemoFragment.setEngineDemoContext(demoInfo).resetGauges();
         }
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(item.getLabel());
+//        setTitle(item.getLabel());
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
@@ -168,6 +182,7 @@ public class GaugesActivity extends Activity implements ListView.OnItemClickList
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        mDrawerLayout.closeDrawers();
         // The action bar home/up action should open or close the drawer.
         // ActionBarDrawerToggle will take care of this.
         if (mDrawerToggle.onOptionsItemSelected(item)) {

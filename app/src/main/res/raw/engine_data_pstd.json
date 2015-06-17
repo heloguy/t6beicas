@@ -1,0 +1,183 @@
+{
+  "torque": {
+    "events": [
+      {
+        "targetValue": 54,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 55,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 96,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 49,
+        "secondsToTarget": 5
+      },
+      {
+        "targetValue": 54,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 55,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 96,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 49,
+        "secondsToTarget": 5
+      },
+      {
+        "targetValue": 120,
+        "secondsToTarget": 3
+      },
+      {
+        "targetValue": 109,
+        "secondsToTarget": 3
+      },
+      {
+        "targetValue": 106,
+        "secondsToTarget": 2
+      }
+    ]
+  },
+
+  "oilPress": {
+    "events": [
+      {
+        "targetValue": 108,
+        "secondsToTarget": 0.001
+      }
+    ]
+  },
+
+  "itt": {
+    "events": [
+      {
+        "targetValue": 636,
+        "secondsToTarget": 0.001
+      }
+    ]
+  },
+
+  "oilTemp": {
+    "events": [
+      {
+        "targetValue": 68,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 67,
+        "secondsToTarget": 10
+      },
+      {
+        "targetValue": 68,
+        "secondsToTarget": 5
+      }
+    ]
+  },
+
+  "n1": {
+    "events": [
+      {
+        "targetValue": 92,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 93,
+        "secondsToTarget": 10
+      },
+      {
+        "targetValue": 92,
+        "secondsToTarget": 5
+      }
+    ]
+  },
+
+  "hydPress": {
+    "events": [
+      {
+        "targetValue": 3010,
+        "secondsToTarget": 0.001
+      }
+    ]
+  },
+
+  "propRpm": {
+    "events": [
+      {
+        "targetValue": 54,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 55,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 62,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 100,
+        "secondsToTarget": 7
+      },
+      {
+        "targetValue": 55,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 62,
+        "secondsToTarget": 2
+      },
+      {
+        "targetValue": 98,
+        "secondsToTarget": 5
+      },
+      {
+        "targetValue": 38,
+        "secondsToTarget": 3
+      }
+    ]
+  },
+
+  "fuelFlow": {
+    "events": [
+      {
+        "targetValue": 435,
+        "secondsToTarget": 0.001
+      },
+      {
+        "targetValue": 434,
+        "secondsToTarget": 20
+      },
+      {
+        "targetValue": 385,
+        "secondsToTarget": 3
+      }
+    ]
+  },
+
+  "voltage": {
+    "events": [
+      {
+        "targetValue": 28,
+        "secondsToTarget": 0.0001
+      }
+    ]
+  },
+
+  "amps": {
+    "events": [
+      {
+        "targetValue": -10,
+        "secondsToTarget": 0.0001
+      }
+    ]
+  }
+}

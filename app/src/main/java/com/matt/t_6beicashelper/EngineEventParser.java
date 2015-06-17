@@ -20,6 +20,8 @@ import com.matt.t_6beicashelper.gauges.T6Gauge.EngineEvent;
  */
 public class EngineEventParser {
 
+    private static final String EXECUTE_JSON_KEY = "execute";
+    private static final String INITIALIZE_JSON_KEY = "initialize";
     private static final String EVENTS_JSON_KEY = "events";
     private static final String TARGET_VALUE_JSON_KEY = "targetValue";
     private static final String TIME_TO_TARGET_JSON_KEY = "secondsToTarget";
@@ -43,14 +45,26 @@ public class EngineEventParser {
         JSONObject obj = new JSONObject(json);
 
         for (Pair<String, T6Gauge> pair : gauges) {
-            JSONArray events = obj.getJSONObject(pair.first).getJSONArray(EVENTS_JSON_KEY);
-            populateGaugeEvents(events, pair.second);
+            int initialValue = 0;
+
+            try {
+                initialValue = obj.getJSONObject(INITIALIZE_JSON_KEY).getInt(pair.first);
+            } catch (JSONException e) {
+            }
+
+            JSONArray events = obj.getJSONObject(EXECUTE_JSON_KEY).getJSONObject(pair.first).getJSONArray(EVENTS_JSON_KEY);
+            populateGaugeExecuteEvents(events, pair.second);
+            setInitialGaugeEvent(initialValue, pair.second);
         }
 
         is.close();
     }
 
-    private static void populateGaugeEvents(JSONArray events, T6Gauge gauge) throws JSONException {
+    private static void setInitialGaugeEvent(int initialValue, T6Gauge gauge){
+        gauge.setInitialEvent(new EngineEvent(initialValue, T6Gauge.LIGHTSPEED));
+    }
+
+    private static void populateGaugeExecuteEvents(JSONArray events, T6Gauge gauge) throws JSONException {
         for (int i = 0; i < events.length(); i++) {
             JSONObject rawEvent = events.getJSONObject(i);
             EngineEvent event = new EngineEvent(rawEvent.getInt(TARGET_VALUE_JSON_KEY), rawEvent.getInt(TIME_TO_TARGET_JSON_KEY));

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="T6Gauge">
+        <attr name="testtesttest" format="float" />
+    </declare-styleable>
+
+</resources>

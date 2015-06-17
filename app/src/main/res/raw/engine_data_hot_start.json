@@ -66,12 +66,8 @@
         "secondsToTarget": 4
       },
       {
-        "targetValue": 220,
-        "secondsToTarget": 90
-      },
-      {
-        "targetValue": 200,
-        "secondsToTarget": 300
+        "targetValue": 650,
+        "secondsToTarget": 15
       }
     ]
   },

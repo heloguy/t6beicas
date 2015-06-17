@@ -37,4 +37,14 @@
         <item>engine_data_ucpc</item>
         <item>engine_data_ucpf</item>
     </string-array>
+
+    <!-- Hydraulic Malfunctions -->
+
+    <string-array name="hydraulic_file_names">
+        <item>engine_data_hydraulic_pump_failure</item>
+    </string-array>
+
+    <string-array name="hydraulic_navigation_labels">
+        <item>Hydraulic Pump Failure</item>
+    </string-array>
 </resources>
