@@ -4,7 +4,7 @@
     <string-array name="misc_navigation_labels">
         <item>About</item>
         <item>Flashcards</item>
-        <item>Random</item>
+        <!--<item>Random</item>-->
     </string-array>
 
     <string-array name="start_navigation_labels">

@@ -77,6 +77,8 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
     private T6VoltGauge voltGauge;
     private T6AmpGauge ampGauge;
     private final ArrayList<Pair<String, T6Gauge>> gauges = new ArrayList<>();
+    private static final String BUNDLE_FILENAME = "BUNDLE_FILENAME";
+    private static final String BUNDLE_TITLE = "BUNDLE_TITLE";
 
     private AlertDialog mDialog;
     private EngineDemoInfo mDemoInfo;
@@ -84,8 +86,13 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
     public EngineDemoFragment() {
     }
 
-    public EngineDemoFragment(EngineDemoInfo demoInfo) {
-        mDemoInfo = demoInfo;
+    public static final EngineDemoFragment newInstance(EngineDemoInfo demoInfo) {
+        EngineDemoFragment fragment = new EngineDemoFragment();
+        Bundle bundle = new Bundle(2);
+        bundle.putString(BUNDLE_FILENAME, demoInfo.fileName);
+        bundle.putString(BUNDLE_TITLE, demoInfo.title);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Nullable
@@ -93,30 +100,38 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.gauges, container, false);
 
-        torque = (T6Gauge) rootView.findViewById(R.id.torque);
-        oilPress = (T6Gauge) rootView.findViewById(R.id.oilpress);
-        itt = (T6Gauge) rootView.findViewById(R.id.itt);
-        oilTemp = (T6Gauge) rootView.findViewById(R.id.oiltemp);
-        n1 = (T6Gauge) rootView.findViewById(R.id.n1);
-        hydPress = (T6Gauge) rootView.findViewById(R.id.hydpress);
-        propRpm = (T6NpGauge) rootView.findViewById(R.id.prop_rpm);
-        ffGauge = (T6FuelFlowGauge) rootView.findViewById(R.id.fuel_flow);
-        voltGauge = (T6VoltGauge) rootView.findViewById(R.id.voltage);
-        ampGauge = (T6AmpGauge) rootView.findViewById(R.id.amps);
+        if(savedInstanceState == null) {
+            String title = getArguments().getString(BUNDLE_TITLE);
+            String filename = getArguments().getString(BUNDLE_FILENAME);
 
-        gauges.add(new Pair<>(ITT_GAUGE_JSON_KEY, itt));
-        gauges.add(new Pair<>(N1_GAUGE_JSON_KEY, n1));
-        gauges.add(new Pair<>(TORQUE_GAUGE_JSON_KEY, torque));
-        gauges.add(new Pair<>(OIL_PRESS_GAUGE_JSON_KEY, oilPress));
-        gauges.add(new Pair<>(OIL_TEMP_GAUGE_JSON_KEY, oilTemp));
-        gauges.add(new Pair<>(HYD_PRESS_GAUGE_JSON_KEY, hydPress));
-        gauges.add(new Pair<>(PROP_RPM_GAUGE_JSON_KEY, (T6Gauge) propRpm));
-        gauges.add(new Pair<>(FUEL_FLOW_GAUGE_JSON_KEY, (T6Gauge) ffGauge));
+            setEngineDemoContext(EngineDemoInfo.create()
+            .setFileName(filename)
+            .setTitle(title));
+
+            torque = (T6Gauge) rootView.findViewById(R.id.torque);
+            oilPress = (T6Gauge) rootView.findViewById(R.id.oilpress);
+            itt = (T6Gauge) rootView.findViewById(R.id.itt);
+            oilTemp = (T6Gauge) rootView.findViewById(R.id.oiltemp);
+            n1 = (T6Gauge) rootView.findViewById(R.id.n1);
+            hydPress = (T6Gauge) rootView.findViewById(R.id.hydpress);
+            propRpm = (T6NpGauge) rootView.findViewById(R.id.prop_rpm);
+            ffGauge = (T6FuelFlowGauge) rootView.findViewById(R.id.fuel_flow);
+            voltGauge = (T6VoltGauge) rootView.findViewById(R.id.voltage);
+            ampGauge = (T6AmpGauge) rootView.findViewById(R.id.amps);
+
+            gauges.add(new Pair<>(ITT_GAUGE_JSON_KEY, itt));
+            gauges.add(new Pair<>(N1_GAUGE_JSON_KEY, n1));
+            gauges.add(new Pair<>(TORQUE_GAUGE_JSON_KEY, torque));
+            gauges.add(new Pair<>(OIL_PRESS_GAUGE_JSON_KEY, oilPress));
+            gauges.add(new Pair<>(OIL_TEMP_GAUGE_JSON_KEY, oilTemp));
+            gauges.add(new Pair<>(HYD_PRESS_GAUGE_JSON_KEY, hydPress));
+            gauges.add(new Pair<>(PROP_RPM_GAUGE_JSON_KEY, (T6Gauge) propRpm));
+            gauges.add(new Pair<>(FUEL_FLOW_GAUGE_JSON_KEY, (T6Gauge) ffGauge));
 //        gauges.add(new Pair<>(VOLT_GAUGE_JSON_KEY, (T6Gauge) voltGauge));
 //        gauges.add(new Pair<>(AMP_GAUGE_JSON_KEY, (T6Gauge) ampGauge));
 
-        resetGauges();
-        setHasOptionsMenu(true);
+            resetGauges();
+        }
         return rootView;
     }
 

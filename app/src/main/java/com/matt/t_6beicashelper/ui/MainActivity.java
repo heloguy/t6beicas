@@ -11,6 +11,7 @@ package com.matt.t_6beicashelper.ui;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -83,6 +84,8 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
         if (savedInstanceState == null) {
             selectItem(DEFAULT_NAV_ITEM);
         }
+
+        mDrawerLayout.openDrawer(mDrawerList);
     }
 
     // Create sliding navigation drawer items.
@@ -93,7 +96,7 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
 
         drawerItems.add(NavMenuItem.create(NAV_MENU_ABOUT, getString(R.string.about_item_title), "", "ic_launcher", false, this));
         drawerItems.add(NavMenuItem.create(NAV_MENU_FLASHCARDS, getString(R.string.flashcards_item_title), "", "ic_launcher", false, this));
-        drawerItems.add(NavMenuItem.create(NAV_MENU_ABOUT, getString(R.string.random_item_title), "", "ic_launcher", false, this));
+//        drawerItems.add(NavMenuItem.create(NAV_MENU_ABOUT, getString(R.string.random_item_title), "", "ic_launcher", false, this));
 
         // Engine Starts
 
@@ -155,6 +158,7 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
                 handleAboutSelected(position);
                 break;
             case NAV_MENU_FLASHCARDS:
+                handleFlashcardsSelected();
                 break;
             case NAV_MENU_RANDOM:
                 break;
@@ -166,15 +170,26 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
         }
     }
 
+    private void handleFlashcardsSelected() {
+        Intent i = new Intent(this, FlashcardsActivity.class);
+        startActivity(i);
+    }
+
     private EngineDemoFragment mEngineDemoFragment;
 
     private void handleNavDemoItemSelected(int position, NavMenuItem item) {
+        setTitle(item.getLabel());
+        mDrawerLayout.closeDrawer(mDrawerList);
+
         EngineDemoFragment.EngineDemoInfo demoInfo = EngineDemoFragment.EngineDemoInfo.create()
                 .setFileName(item.getRawFileName())
                 .setTitle(item.getLabel());
 
         if (mEngineDemoFragment == null) {
-            mEngineDemoFragment = new EngineDemoFragment(demoInfo);
+            mEngineDemoFragment = EngineDemoFragment.newInstance(demoInfo);
+            mEngineDemoFragment.setHasOptionsMenu(true);
+        }
+        if(!mEngineDemoFragment.isVisible()) {
 
             // Insert the fragment by replacing any existing fragment
             FragmentManager fragmentManager = getFragmentManager();
@@ -187,8 +202,6 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(item.getLabel());
-        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     private void handleAboutSelected(int position) {
@@ -200,7 +213,7 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
 
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(position, true);
-        setTitle(getString(R.string.about_item_title));
+//        setTitle(getString(R.string.about_item_title));
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
