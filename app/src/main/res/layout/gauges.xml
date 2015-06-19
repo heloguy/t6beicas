@@ -89,7 +89,7 @@
                 gauge:showGaugeText="true"
                 gauge:showNeedle="true"
                 gauge:showScale="true"
-                gauge:subdivisions="100"
+                gauge:subdivisions="5"
                 gauge:textUnitBelow="%"
                 gauge:textUnitLabel="TORQUE" />
 
@@ -102,7 +102,7 @@
                 gauge:rangeColors="@array/oilpress_rangeColors"
                 gauge:rangeValues="@array/oilpress_ranges"
                 gauge:scaleEndValue="220"
-                gauge:subdivisions="100"
+                gauge:subdivisions="5"
                 gauge:textUnitBelow="PSI"
                 gauge:textUnitLabel="OIL PRESS" />
         </LinearLayout>
@@ -122,7 +122,7 @@
                 gauge:rangeValues="@array/itt_ranges"
                 gauge:scaleEndValue="1200"
                 gauge:scaleStartValue="0"
-                gauge:subdivisions="100"
+                gauge:subdivisions="5"
                 gauge:textUnitBelow="&#xb0;C"
                 gauge:textUnitLabel="ITT" />
 
@@ -135,7 +135,7 @@
                 gauge:rangeColors="@array/oiltemp_rangeColors"
                 gauge:rangeValues="@array/oiltemp_ranges"
                 gauge:scaleEndValue="120"
-                gauge:subdivisions="100"
+                gauge:subdivisions="5"
                 gauge:textUnitBelow="&#xb0;C"
                 gauge:textUnitLabel="OIL TEMP" />
         </LinearLayout>
@@ -154,7 +154,7 @@
                 gauge:rangeColors="@array/n1_rangeColors"
                 gauge:rangeValues="@array/n1_ranges"
                 gauge:scaleEndValue="110"
-                gauge:subdivisions="100"
+                gauge:subdivisions="5"
                 gauge:textUnitBelow="%"
                 gauge:textUnitLabel="N1" />
 
@@ -167,7 +167,7 @@
                 gauge:rangeColors="@array/hydpress_rangeColors"
                 gauge:rangeValues="@array/hydpress_ranges"
                 gauge:scaleEndValue="4000"
-                gauge:subdivisions="100"
+                gauge:subdivisions="5"
                 gauge:textUnitBelow="PSI"
                 gauge:textUnitLabel="HYD PRESS" />
         </LinearLayout>

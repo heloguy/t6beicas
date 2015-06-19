@@ -39,7 +39,6 @@ public class MainActivity extends BaseContentActivity implements ListView.OnItem
     private static final int NAV_MENU_FLASHCARDS = 103;
     private static final int NAV_MENU_RANDOM = 104;
     private static final int DEFAULT_NAV_ITEM = 0;
-    private Menu mMenu;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {

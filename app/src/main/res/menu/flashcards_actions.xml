@@ -3,8 +3,7 @@
     <item android:id="@+id/action_start"
         android:title="Start"
         android:orderInCategory="5000"
-        android:icon="@drawable/ic_arrow_forward_black_24dp"
-        android:showAsAction="always"/>
+        android:showAsAction="always|withText"/>
     <item android:id="@+id/action_next"
         android:title="Next Card"
         android:orderInCategory="5000"

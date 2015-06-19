@@ -8,8 +8,6 @@ package com.matt.gaugeview;
  * You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
  *******************************************************************************/
 
-import java.util.ArrayList;
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -34,7 +32,6 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 public class GaugeView extends View {
@@ -139,7 +136,8 @@ public class GaugeView extends View {
     private Paint mFacePaint;
     private Paint mFaceBorderPaint;
     private Paint mFaceShadowPaint;
-    private Paint[] mRangePaints;
+    private Paint[] mSubdivisionPaints;
+    private Paint[] mDivisionPaints;
     private Paint mNeedleRightPaint;
     private Paint mNeedleLeftPaint;
     private Paint mNeedleScrewPaint;
@@ -391,7 +389,8 @@ public class GaugeView extends View {
             mInnerRimBorderDarkPaint = getDefaultInnerRimBorderDarkPaint();
         }
         if (mShowRanges) {
-            setDefaultScaleRangePaints();
+            setDefaultScaleSubdivisionPaints();
+            setDefaultScaleDivisionPaints();
         }
         if (mShowNeedle) {
             setDefaultNeedlePaths();
@@ -548,27 +547,33 @@ public class GaugeView extends View {
         return paint;
     }
 
-    public float[] getDefaultRangeValues() {
-        return new float[]{250.0f, 500.0f, 750.0f, 1000.0f};
-    }
-
-    public int[] getDefaultRangeColors() {
-        return new int[]{Color.rgb(231, 32, 43), Color.rgb(232, 111, 33),
-                Color.rgb(232, 231, 33), Color.rgb(27, 202, 33)};
-    }
-
-    public void setDefaultScaleRangePaints() {
+    public void setDefaultScaleSubdivisionPaints() {
         final int length = mRangeValues.length;
-        mRangePaints = new Paint[length];
+        mSubdivisionPaints = new Paint[length];
         for (int i = 0; i < length; i++) {
-            mRangePaints[i] = new Paint(Paint.LINEAR_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
-            mRangePaints[i].setColor(mRangeColors[i]);
-            mRangePaints[i].setStyle(Paint.Style.STROKE);
-            mRangePaints[i].setStrokeWidth(0.005f);
-            mRangePaints[i].setTextSize(0.05f);
-            mRangePaints[i].setTypeface(Typeface.SANS_SERIF);
-            mRangePaints[i].setTextAlign(Align.CENTER);
-            mRangePaints[i].setShadowLayer(0.005f, 0.002f, 0.002f, mTextShadowColor);
+            mSubdivisionPaints[i] = new Paint(Paint.LINEAR_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+            mSubdivisionPaints[i].setColor(mRangeColors[i]);
+            mSubdivisionPaints[i].setStyle(Paint.Style.STROKE);
+            mSubdivisionPaints[i].setStrokeWidth(0.07f);
+            mSubdivisionPaints[i].setTextSize(0.05f);
+            mSubdivisionPaints[i].setTypeface(Typeface.SANS_SERIF);
+            mSubdivisionPaints[i].setTextAlign(Align.CENTER);
+            mSubdivisionPaints[i].setShadowLayer(0.005f, 0.002f, 0.002f, mTextShadowColor);
+        }
+    }
+
+    public void setDefaultScaleDivisionPaints() {
+        final int length = mRangeValues.length;
+        mDivisionPaints = new Paint[length];
+        for (int i = 0; i < length; i++) {
+            mDivisionPaints[i] = new Paint(Paint.LINEAR_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+            mDivisionPaints[i].setColor(mRangeColors[i]);
+            mDivisionPaints[i].setStyle(Paint.Style.STROKE);
+            mDivisionPaints[i].setStrokeWidth(0.005f);
+            mDivisionPaints[i].setTextSize(0.05f);
+            mDivisionPaints[i].setTypeface(Typeface.SANS_SERIF);
+            mDivisionPaints[i].setTextAlign(Align.CENTER);
+            mDivisionPaints[i].setShadowLayer(0.005f, 0.002f, 0.002f, mTextShadowColor);
         }
     }
 
@@ -770,25 +775,26 @@ public class GaugeView extends View {
         canvas.rotate(mScaleRotation, 0.5f, 0.5f);
 
         final int totalTicks = mDivisions * mSubdivisions + 1;
-//        final int startTick = Math.round((mScaleStartValue / mScaleEndValue) * mDivisions * mSubdivisions);
         for (int i = 0; i < totalTicks; i++) {
             final float y1 = mScaleRect.top;
             final float y2 = y1 + 0.025f; // height of division
             final float y3 = y1 + 0.045f; // height of subdivision
 
             final float value = getValueForTick(i);
-            final Paint paint = getRangePaint(mScaleStartValue + value);
+            Paint paint = getSubdivisionPaint(mScaleStartValue + value);
 
             float mod = value % mDivisionValue;
             if ((Math.abs(mod - 0) < 0.001) || (Math.abs(mod - mDivisionValue) < 0.001)) {
+                paint = getDivisionPaint(mScaleStartValue + value);
                 // Draw a division tick
                 canvas.drawLine(0.5f, y1, 0.5f, y3, paint);
                 // Draw the text 0.15 away from the division tick
-                drawTextOnCanvasWithMagnifier(canvas, valueString(mScaleStartValue+value), 0.5f, y3 + 0.045f, paint);
-            } else {
-                // Draw a subdivision tick
-                canvas.drawLine(0.5f, y1, 0.5f, y2, paint);
+                drawTextOnCanvasWithMagnifier(canvas, valueString(mScaleStartValue + value), 0.5f, y3 + 0.045f, paint);
             }
+
+            // Draw subdivision tick
+            canvas.drawLine(0.5f, y1, 0.5f, y2, paint);
+
             canvas.rotate(mSubdivisionAngle, 0.5f, 0.5f);
         }
         canvas.restore();
@@ -829,12 +835,21 @@ public class GaugeView extends View {
         return tick * (mDivisionValue / mSubdivisions);
     }
 
-    private Paint getRangePaint(final float value) {
+    private Paint getSubdivisionPaint(final float value) {
         final int length = mRangeValues.length;
         for (int i = 0; i < length - 1; i++) {
-            if (value < mRangeValues[i]) return mRangePaints[i];
+            if (value < mRangeValues[i]) return mSubdivisionPaints[i];
         }
-        if (value <= mRangeValues[length - 1]) return mRangePaints[length - 1];
+        if (value <= mRangeValues[length - 1]) return mSubdivisionPaints[length - 1];
+        throw new IllegalArgumentException("Value " + value + " out of range!");
+    }
+
+    private Paint getDivisionPaint(final float value) {
+        final int length = mRangeValues.length;
+        for (int i = 0; i < length - 1; i++) {
+            if (value < mRangeValues[i]) return mDivisionPaints[i];
+        }
+        if (value <= mRangeValues[length - 1]) return mDivisionPaints[length - 1];
         throw new IllegalArgumentException("Value " + value + " out of range!");
     }
 
@@ -848,7 +863,7 @@ public class GaugeView extends View {
             canvas.rotate(angle, 0.5f, 0.5f);
 
             setNeedleShadowPosition(angle);
-            int color = getRangePaint(mScaleStartValue + mCurrentValue).getColor();
+            int color = getDivisionPaint(mScaleStartValue + mCurrentValue).getColor();
 
             mNeedleLeftPaint.setColor(color);
             mNeedleRightPaint.setColor(color);
@@ -913,7 +928,7 @@ public class GaugeView extends View {
 
         // Target value has been reached.
         if (!(Math.abs(mCurrentValue - mTargetValue) > 0.01f)) {
-            if(mEventReceivedListener != null) {
+            if (mEventReceivedListener != null) {
                 mEventReceivedListener.notifyOfEvent(new ChangeEvent(TARGET_REACHED));
             }
 
