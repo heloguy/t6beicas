@@ -1,5 +1,6 @@
 package com.matt.t_6beicashelper.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 /**
  * Created by Matt on 6/11/15.
  */
-public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActionsCompleteObserver {
+public class EngineDemoFragment extends BaseContentFragment implements T6Gauge.GaugeActionsCompleteObserver {
     public static class EngineDemoInfo {
         public String fileName;
         public String title;
@@ -64,7 +65,6 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
     private static final String AMP_GAUGE_JSON_KEY = "amps";
     private boolean mIsComplete = false;
     private int mActiveGauges = 0;
-
 
     private T6Gauge torque;
     private T6Gauge oilPress;
@@ -190,6 +190,7 @@ public class EngineDemoFragment extends Fragment implements T6Gauge.GaugeActions
         setButtonToShow(R.id.action_play);
         getActivity().invalidateOptionsMenu();
         createDialog();
+        getFragmentLoadedListener().onLoaded();
     }
 
     public EngineDemoFragment setEngineDemoContext(EngineDemoInfo context) {

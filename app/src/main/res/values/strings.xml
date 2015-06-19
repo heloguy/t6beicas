@@ -10,6 +10,6 @@
     <string name="flashcards_item_title">Flashcards</string>
     <string name="random_item_title">Random</string>
     <string name="flashcards_intro_copy">Use the controls at the top to play and cycle through EP\'s. Click the info button to reveal what EP you\'re looking at.</string>
-    <string name="about_copy">Less profsits.</string>
+    <string name="about_copy"></string>
     <string name="copyright">\u00A9 2015 Matt Martin</string>
 </resources>

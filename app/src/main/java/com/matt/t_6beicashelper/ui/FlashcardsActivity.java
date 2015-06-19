@@ -43,7 +43,8 @@ public class FlashcardsActivity extends BaseSingleFragmentActivity {
                     View rootView = inflater.inflate(R.layout.flashcards_intro, container, false);
 
                     setHasOptionsMenu(false);
-                    return rootView;                }
+                    return rootView;
+                }
             };
 
             getFragmentManager().beginTransaction()
@@ -53,7 +54,7 @@ public class FlashcardsActivity extends BaseSingleFragmentActivity {
     }
 
     private ArrayList<EngineDemoFragment.EngineDemoInfo> getFlashcardArray() {
-        if(mFlashcardItems != null) {
+        if (mFlashcardItems != null) {
             return mFlashcardItems;
         }
 
@@ -122,7 +123,7 @@ public class FlashcardsActivity extends BaseSingleFragmentActivity {
         // Inflate the menu items for use in the action bar
         getMenuInflater().inflate(R.menu.flashcards_actions, menu);
 
-        switch(getControlButtonId()) {
+        switch (getControlButtonId()) {
             case R.id.action_start:
                 showStartButton(menu);
                 break;
@@ -148,7 +149,7 @@ public class FlashcardsActivity extends BaseSingleFragmentActivity {
             case R.id.action_next:
                 EngineDemoFragment.EngineDemoInfo flashcard = getNextFlashcard();
 
-                if(flashcard == null) {
+                if (flashcard == null) {
                     return true;
                 }
 
@@ -162,6 +163,7 @@ public class FlashcardsActivity extends BaseSingleFragmentActivity {
     }
 
     private void flashcardsStart() {
+        showLoadingIndicator();
         EngineDemoFragment fragment = (EngineDemoFragment) getFragment();
 
         fragment.setEngineDemoContext(getNextFlashcard());
@@ -194,7 +196,7 @@ public class FlashcardsActivity extends BaseSingleFragmentActivity {
     }
 
     private EngineDemoFragment.EngineDemoInfo getNextFlashcard() {
-        if(mCurrentFlashcardIndex >= getFlashcardArray().size()) {
+        if (mCurrentFlashcardIndex >= getFlashcardArray().size()) {
             mCurrentFlashcardIndex = 0;
         }
 

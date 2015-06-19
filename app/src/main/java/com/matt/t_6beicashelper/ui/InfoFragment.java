@@ -12,5 +12,5 @@ import com.matt.t_6beicashelper.R;
 /**
  * Created by Matt on 6/16/15.
  */
-public abstract class InfoFragment extends Fragment {
+public abstract class InfoFragment extends BaseContentFragment {
 }

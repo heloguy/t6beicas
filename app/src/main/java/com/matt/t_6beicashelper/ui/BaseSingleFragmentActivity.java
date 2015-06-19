@@ -6,6 +6,6 @@ import android.app.Fragment;
 /**
  * Created by Matt on 6/17/15.
  */
-public abstract class BaseSingleFragmentActivity extends Activity {
+public abstract class BaseSingleFragmentActivity extends BaseContentActivity {
     protected abstract Fragment getFragment();
 }

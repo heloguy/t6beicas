@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Menu;
@@ -25,7 +26,7 @@ import com.matt.t_6beicashelper.R;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements ListView.OnItemClickListener {
+public class MainActivity extends BaseContentActivity implements ListView.OnItemClickListener {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private CharSequence mDrawerTitle;
@@ -82,7 +83,7 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         if (savedInstanceState == null) {
-            selectItem(DEFAULT_NAV_ITEM);
+            selectItem(mDrawerAdapter.getItem(DEFAULT_NAV_ITEM));
         }
 
         mDrawerLayout.openDrawer(mDrawerList);
@@ -145,27 +146,37 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
 
     @Override
     public void onItemClick(AdapterView parent, View view, int position, long id) {
-        selectItem(position);
+        final NavDrawerItem item = mDrawerAdapter.getItem(position);
+        int itemId = item.getId();
+
+        if(itemId == NAV_MENU_SECTION_ID)
+            return;
+
+        mDrawerList.setItemChecked(position, true);
+        mDrawerLayout.closeDrawer(mDrawerList);
+        showLoadingIndicator();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                selectItem(item);
+            }
+        }, 350);
     }
 
     /** Swaps fragments in the main content view */
-    private void selectItem(int position) {
-        NavDrawerItem item = mDrawerAdapter.getItem(position);
-        int id = item.getId();
-
-        switch (id) {
+    private void selectItem(NavDrawerItem item) {
+        switch (item.getId()) {
             case NAV_MENU_ABOUT:
-                handleAboutSelected(position);
+                handleAboutSelected();
                 break;
             case NAV_MENU_FLASHCARDS:
                 handleFlashcardsSelected();
                 break;
             case NAV_MENU_RANDOM:
                 break;
-            case NAV_MENU_SECTION_ID:
-                return;
             case NAV_MENU_DEMO_ITEM:
-                handleNavDemoItemSelected(position, (NavMenuItem) item);
+                handleNavDemoItemSelected((NavMenuItem) item);
                 break;
         }
     }
@@ -177,10 +188,8 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
 
     private EngineDemoFragment mEngineDemoFragment;
 
-    private void handleNavDemoItemSelected(int position, NavMenuItem item) {
+    private void handleNavDemoItemSelected(NavMenuItem item) {
         setTitle(item.getLabel());
-        mDrawerLayout.closeDrawer(mDrawerList);
-
         EngineDemoFragment.EngineDemoInfo demoInfo = EngineDemoFragment.EngineDemoInfo.create()
                 .setFileName(item.getRawFileName())
                 .setTitle(item.getLabel());
@@ -199,22 +208,16 @@ public class MainActivity extends Activity implements ListView.OnItemClickListen
         } else {
             mEngineDemoFragment.setEngineDemoContext(demoInfo).resetGauges();
         }
-
-        // Highlight the selected item, update the title, and close the drawer
-        mDrawerList.setItemChecked(position, true);
     }
 
-    private void handleAboutSelected(int position) {
+    private void handleAboutSelected() {
         AboutFragment fragment = new AboutFragment();
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.content_frame, fragment)
                 .commit();
 
-        // Highlight the selected item, update the title, and close the drawer
-        mDrawerList.setItemChecked(position, true);
-//        setTitle(getString(R.string.about_item_title));
-        mDrawerLayout.closeDrawer(mDrawerList);
+        hideLoadingIndicator();
     }
 
     @Override
