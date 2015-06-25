@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">T-6B EICAS Study</string>
     <string name="title_activity_main">T-6B EICAS Study</string>
+    <string name="about_title">T-6B EICAS Study</string>
 
     <string name="engine_start_section_title">Starts</string>
     <string name="engine_eps_section_title">Engine / Prop</string>

@@ -1,6 +1,8 @@
 package com.matt.t_6beicashelper.ui;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.os.Bundle;
 import android.view.View;
 
 import com.matt.t_6beicashelper.R;
@@ -35,5 +37,14 @@ public abstract class BaseContentActivity extends Activity implements BaseConten
 
     public void onLoaded() {
         hideLoadingIndicator();
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if(getResources().getBoolean(R.bool.portrait_only)){
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
     }
 }

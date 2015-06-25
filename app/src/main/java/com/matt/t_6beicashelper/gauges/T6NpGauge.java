@@ -1,8 +1,11 @@
 package com.matt.t_6beicashelper.gauges;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 /**
  * Created by Matt on 6/12/15.
@@ -48,5 +51,14 @@ public class T6NpGauge extends T6TextGauge {
 
     protected float getTextSize() {
         return 0.5f;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        LinearLayout parent = (LinearLayout) getParent();
+        ViewGroup.LayoutParams params = parent.getLayoutParams();
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        parent.setLayoutParams(params);
     }
 }

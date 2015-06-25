@@ -8,6 +8,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@android:color/white"
+        android:textIsSelectable="false"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/about_copy"
         android:gravity="center"
         android:textColor="@android:color/holo_blue_dark"
@@ -20,5 +31,5 @@
         android:gravity="center"
         android:textColor="@android:color/holo_blue_dark"
         android:padding="10dp"
-        android:textSize="10dp"/>
+        android:textSize="10sp"/>
 </LinearLayout>

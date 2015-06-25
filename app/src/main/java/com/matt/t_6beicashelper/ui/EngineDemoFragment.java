@@ -135,6 +135,12 @@ public class EngineDemoFragment extends BaseContentFragment implements T6Gauge.G
         return rootView;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
     private void createDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage(mDemoInfo.title);
